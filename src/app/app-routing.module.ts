@@ -7,6 +7,7 @@ import { SingleProductViewComponent } from './userPanel/components/single-produc
 import { UserOrderComponent } from './userPanel/components/user-order/user-order.component';
 import { ContactComponent } from './userPanel/components/contact/contact.component';
 import { AdminManueComponent } from './adminPanel/manuebar/admin-manue/admin-manue.component';
+import { AdminDashboardComponent } from './adminPanel/components/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
 {path:'' ,pathMatch:'full', redirectTo:'/userHome' },
@@ -16,7 +17,10 @@ const routes: Routes = [
 {path:'singleProduct' ,component: SingleProductViewComponent },
 {path:'userOrder', component : UserOrderComponent},
 {path:'contact' , component: ContactComponent},
-{path:'admin' , component:AdminManueComponent}
+{path:'admin' , component:AdminManueComponent,
+children:[
+  {path:'', component: AdminDashboardComponent}
+]}
 
 ];
 
