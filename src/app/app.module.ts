@@ -11,8 +11,18 @@ import { CheckOutComponent } from './userPanel/components/check-out/check-out.co
 import { SingleProductViewComponent } from './userPanel/components/single-product-view/single-product-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDividerModule} from '@angular/material/divider';
-
-
+import { ContactComponent } from './userPanel/components/contact/contact.component';
+import { UserOrderComponent } from './userPanel/components/user-order/user-order.component';
+import { HeaderComponent } from './adminPanel/manuebar/header/header.component';
+import { FooterComponent } from './adminPanel/manuebar/footer/footer.component';
+import { SidebarComponent } from './adminPanel/manuebar/sidebar/sidebar.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { AdminManueComponent } from './adminPanel/manuebar/admin-manue/admin-manue.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -23,6 +33,13 @@ import {MatDividerModule} from '@angular/material/divider';
     CartComponent,
     CheckOutComponent,
     SingleProductViewComponent,
+    ContactComponent,
+    UserOrderComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    AdminManueComponent
+   
     
 
   ],
@@ -30,7 +47,13 @@ import {MatDividerModule} from '@angular/material/divider';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatListModule,
+    MatExpansionModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
