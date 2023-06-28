@@ -1,5 +1,5 @@
 <!-- sidebar start -->
-<mat-nav-list style="height: 1100px;">
+<mat-nav-list style="height:100% ">
     <div class="profile-card">
       <div class="header">
         <h2>Nazmul Hassan</h2>
@@ -20,11 +20,11 @@
     </a>
     <!-- Home end -->
     <mat-divider></mat-divider>
-    <br>
+    <!-- <br> -->
     <!-- Tools start -->
-    <h2 matSubHeader class="hformat">
+    <!-- <h2 matSubHeader class="hformat">
       <mat-icon>build</mat-icon>Tools
-    </h2>
+    </h2> -->
     <!-- Tools end -->
   
     <!-- Product section start -->
@@ -81,16 +81,14 @@
     </mat-expansion-panel>
     <!-- centralstock start -->
   
-    <mat-panel-title>
-      <mat-icon>discount</mat-icon><a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/addCoupon"><b>Add Coupon</b></a>
-    </mat-panel-title>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/addCoupon"><mat-icon>discount</mat-icon><b>Add Coupon</b></a>
     <mat-divider></mat-divider>
-    
     <!-- Report start -->
-    <br>
+    <!-- <br>
     <h2 matSubHeader>
       <mat-icon>assignment</mat-icon>Reports
-    </h2>
+    </h2> -->
   
     <!-- Order Report start -->
     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">

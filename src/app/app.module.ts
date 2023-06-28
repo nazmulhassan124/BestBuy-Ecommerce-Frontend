@@ -56,6 +56,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AddCategoryComponent } from './adminPanel/components/add-category/add-category.component';
+import { AddProductsComponent } from './adminPanel/components/add-products/add-products.component';
+import { AddVendorComponent } from './adminPanel/components/add-vendor/add-vendor.component';
 
 
 
@@ -74,7 +77,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FooterComponent,
     SidebarComponent,
     AdminManueComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AddCategoryComponent,
+    AddProductsComponent,
+    AddVendorComponent
    
     
 
