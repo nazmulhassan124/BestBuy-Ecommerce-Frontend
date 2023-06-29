@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,7 +60,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddCategoryComponent } from './adminPanel/components/add-category/add-category.component';
 import { AddProductsComponent } from './adminPanel/components/add-products/add-products.component';
 import { AddVendorComponent } from './adminPanel/components/add-vendor/add-vendor.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -98,6 +99,8 @@ import { AddVendorComponent } from './adminPanel/components/add-vendor/add-vendo
     MatSidenavModule,
     MatButtonModule,
     OverlayModule ,
+    FormsModule, ReactiveFormsModule,
+    HttpClientModule,
 
 
     CdkTreeModule,
@@ -125,6 +128,7 @@ import { AddVendorComponent } from './adminPanel/components/add-vendor/add-vendo
     MatTooltipModule,
     MatNativeDateModule,
     FlexLayoutModule
+
 
 
   ],

@@ -8,6 +8,9 @@ import { UserOrderComponent } from './userPanel/components/user-order/user-order
 import { ContactComponent } from './userPanel/components/contact/contact.component';
 import { AdminManueComponent } from './adminPanel/manuebar/admin-manue/admin-manue.component';
 import { AdminDashboardComponent } from './adminPanel/components/admin-dashboard/admin-dashboard.component';
+import { AddCategoryComponent } from './adminPanel/components/add-category/add-category.component';
+import { AddProductsComponent } from './adminPanel/components/add-products/add-products.component';
+import { AddVendorComponent } from './adminPanel/components/add-vendor/add-vendor.component';
 
 const routes: Routes = [
 {path:'' ,pathMatch:'full', redirectTo:'/userHome' },
@@ -19,7 +22,10 @@ const routes: Routes = [
 {path:'contact' , component: ContactComponent},
 {path:'admin' , component:AdminManueComponent,
 children:[
-  {path:'', component: AdminDashboardComponent}
+  {path:'', component: AdminDashboardComponent},
+  {path:'category', component: AddCategoryComponent},
+  {path:'addproduct' ,component:AddProductsComponent},
+  {path:'addvendor', component: AddVendorComponent}
 ]}
 
 ];
