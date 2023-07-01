@@ -9,48 +9,68 @@ import { VendorService } from 'src/app/service/vendorService/vendor.service';
   templateUrl: './add-vendor.component.html',
   styleUrls: ['./add-vendor.component.css']
 })
-export class AddVendorComponent implements OnInit{
+export class AddVendorComponent implements OnInit {
 
-  displayedColumns: string[] = ['Vendor ID', 'Vendor Name', 'Vendor Description', 'Actions'];
+  displayedColumns: string[] = ['Vendor ID', 'Vendor Name', 'Vendor Email', 'Vendor Description', 'Actions'];
 
   dataSource!: MatTableDataSource<Vendor>;
-  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
-   msg="";
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  msg = "";
+  msgcolor="red"
 
-
-constructor(public vendorService: VendorService){}
+  buttonview= false;
   
-ngOnInit(): void {
-  this.getAllVendor();
-  this.vendorService.refreshNeed.subscribe(() => {
+
+  constructor(public vendorService: VendorService) { }
+
+
+
+  ngOnInit(): void {
     this.getAllVendor();
-  });
-   
+    this.vendorService.refreshNeed.subscribe(() => {
+      this.getAllVendor();
+    });
+
   }
 
   togglePanel() {
     this.vendorService.panelOpenState = !this.vendorService.panelOpenState
+   //this.vendorService.panelOpenState=true;
   }
 
+
   createOrUpdateVendor(currentVendor: Vendor) {
- 
+
     if (currentVendor.vendorId != null) {
       this.updateVendor(currentVendor);
+   
     } else {
       this.createVendor(currentVendor);
+
+
     }
 
-    this.msg="Saved Successfully!!"
+
   }
 
   createVendor(ven: Vendor) {
-    this.vendorService.createVendor(ven).subscribe();
+    if( !ven.email || !ven.vendorName===null){
+      this.msgcolor="red"
+      this.msg = " Plese fill Name & Email field "
+    }else{
+    this.vendorService.createVendor(ven).subscribe((data: any) => {
+      this.msgcolor="green"
+      this.msg = "Saved Successfully!"
+        this.clear();
+      
+    });
+  }
   }
 
-  getAllVendor(){
+  getAllVendor() {
     this.vendorService.getAllVendor().subscribe(
       (data: Vendor[]) => {
-        this.dataSource= new MatTableDataSource (data);
+        this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
       }
     );
@@ -62,13 +82,20 @@ ngOnInit(): void {
 
   editVendor(cat: Vendor) {
     this.vendorService.currentVendor = Object.assign({}, cat);
+    this.buttonview=true;
     this.togglePanel();
+
   }
   updateVendor(ven: Vendor) {
-    this.vendorService.updateVendor(ven).subscribe();
+    this.vendorService.updateVendor(ven).subscribe((data :any)=>{
+        this.msg = "Update Successfully!!"
+        this.clear();
+    });
   }
 
-  clear(){
+  clear() {
     this.vendorService.currentVendor = new Vendor();
-   }
+    this.buttonview=false;
+  }
+  msgclear(){}
 }
