@@ -61,6 +61,8 @@ import { AddCategoryComponent } from './adminPanel/components/add-category/add-c
 import { AddProductsComponent } from './adminPanel/components/add-products/add-products.component';
 import { AddVendorComponent } from './adminPanel/components/add-vendor/add-vendor.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SignupComponent } from './Security/components/signup/signup.component';
+import { LoginComponent } from './Security/components/login/login.component';
 
 
 @NgModule({
@@ -81,7 +83,9 @@ import { HttpClientModule } from '@angular/common/http';
     AdminDashboardComponent,
     AddCategoryComponent,
     AddProductsComponent,
-    AddVendorComponent
+    AddVendorComponent,
+    SignupComponent,
+    LoginComponent
    
     
 

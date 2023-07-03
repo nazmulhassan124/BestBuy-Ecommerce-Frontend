@@ -11,6 +11,8 @@ import { AdminDashboardComponent } from './adminPanel/components/admin-dashboard
 import { AddCategoryComponent } from './adminPanel/components/add-category/add-category.component';
 import { AddProductsComponent } from './adminPanel/components/add-products/add-products.component';
 import { AddVendorComponent } from './adminPanel/components/add-vendor/add-vendor.component';
+import { SignupComponent } from './Security/components/signup/signup.component';
+import { LoginComponent } from './Security/components/login/login.component';
 
 const routes: Routes = [
 {path:'' ,pathMatch:'full', redirectTo:'/userHome' },
@@ -20,6 +22,8 @@ const routes: Routes = [
 {path:'singleProduct' ,component: SingleProductViewComponent },
 {path:'userOrder', component : UserOrderComponent},
 {path:'contact' , component: ContactComponent},
+{path:'signup', component:SignupComponent},
+{path:'login', component:LoginComponent},
 {path:'admin' , component:AdminManueComponent,
 children:[
   {path:'', component: AdminDashboardComponent},

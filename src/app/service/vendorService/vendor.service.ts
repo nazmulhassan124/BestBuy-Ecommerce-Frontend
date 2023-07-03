@@ -15,7 +15,7 @@ const headerOption = {
 })
 
 export class VendorService {
-  dataUrl = 'http://localhost:8080/vendor';
+  dataUrl = 'http://localhost:8080/p1/vendor';
 
   
   panelOpenState = false;

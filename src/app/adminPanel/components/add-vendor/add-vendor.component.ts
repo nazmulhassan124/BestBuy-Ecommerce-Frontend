@@ -88,7 +88,9 @@ export class AddVendorComponent implements OnInit {
   }
   updateVendor(ven: Vendor) {
     this.vendorService.updateVendor(ven).subscribe((data :any)=>{
-        this.msg = "Update Successfully!!"
+      this.msgcolor="green"
+
+      this.msg = "Update Successfully!!"
         this.clear();
     });
   }
