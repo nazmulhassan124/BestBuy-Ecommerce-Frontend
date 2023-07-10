@@ -60,9 +60,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddCategoryComponent } from './adminPanel/components/add-category/add-category.component';
 import { AddProductsComponent } from './adminPanel/components/add-products/add-products.component';
 import { AddVendorComponent } from './adminPanel/components/add-vendor/add-vendor.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './Security/components/signup/signup.component';
 import { LoginComponent } from './Security/components/login/login.component';
+import { AuthGuard } from './Security/_auth/auth.guard';
+import { AuthInterceptor } from './Security/_auth/auth.interceptor';
+import { UserServiceService } from './Security/_service/user-service.service';
 
 
 @NgModule({
@@ -136,7 +139,14 @@ import { LoginComponent } from './Security/components/login/login.component';
 
 
   ],
-  providers: [],
+  providers: [ AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    },
+    UserServiceService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

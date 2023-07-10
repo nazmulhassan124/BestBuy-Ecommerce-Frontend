@@ -13,6 +13,8 @@ import { AddProductsComponent } from './adminPanel/components/add-products/add-p
 import { AddVendorComponent } from './adminPanel/components/add-vendor/add-vendor.component';
 import { SignupComponent } from './Security/components/signup/signup.component';
 import { LoginComponent } from './Security/components/login/login.component';
+import { ForbiddenComponent } from './Security/components/forbidden/forbidden.component';
+import { AuthGuard } from './Security/_auth/auth.guard';
 
 const routes: Routes = [
 {path:'' ,pathMatch:'full', redirectTo:'/userHome' },
@@ -20,11 +22,12 @@ const routes: Routes = [
 {path:'cart' , component:CartComponent},
 {path:'checkout' , component :CheckOutComponent},
 {path:'singleProduct' ,component: SingleProductViewComponent },
-{path:'userOrder', component : UserOrderComponent},
+{path:'userOrder', component : UserOrderComponent , canActivate:[AuthGuard], data:{role:'User'}},
 {path:'contact' , component: ContactComponent},
 {path:'signup', component:SignupComponent},
 {path:'login', component:LoginComponent},
-{path:'admin' , component:AdminManueComponent,
+{ path: 'forbidden', component: ForbiddenComponent},
+{path:'admin' , component:AdminManueComponent, canActivate:[AuthGuard], data:{role:'Admin'} ,
 children:[
   {path:'', component: AdminDashboardComponent},
   {path:'category', component: AddCategoryComponent},

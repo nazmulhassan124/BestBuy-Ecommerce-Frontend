@@ -2,19 +2,27 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { Vendor } from 'src/app/Model/vendor.model';
+import { UserAuthService } from 'src/app/Security/_service/user-auth.service';
 
 
-const headerOption = {
-  headers: new HttpHeaders({
-    'content-type': 'application/json'
-  })
-};
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class VendorService {
+
+
+  private appendToken(headers: HttpHeaders): HttpHeaders {
+    const token = this.userAuth.getToken();
+    if (token) {
+      return headers.append('Authorization', `Bearer ${token}`);
+    }
+    return headers;
+  }
+
+
   dataUrl = 'http://localhost:8080/p1/vendor';
 
   
@@ -23,7 +31,8 @@ export class VendorService {
   currentVendor: Vendor = new Vendor();
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private userAuth: UserAuthService
   ) { }
   private refreshNeeded = new Subject<void>();
 
@@ -32,7 +41,11 @@ export class VendorService {
   }
 
   createVendor(cat: Vendor): Observable<Vendor> {
-    return this.http.post<Vendor>(this.dataUrl+ '/post', cat, headerOption).pipe(
+
+    const headers = new HttpHeaders();
+    const headersWithToken = this.appendToken(headers);
+
+    return this.http.post<Vendor>(this.dataUrl+ '/post', cat, { headers: headersWithToken }).pipe(
       tap(() => {
         this.refreshNeeded.next();
       })
@@ -40,11 +53,19 @@ export class VendorService {
   }
 
   getAllVendor(): Observable<Vendor[]> {
-    return this.http.get<Vendor[]>(this.dataUrl+'/getAll', headerOption);
+
+    const headers = new HttpHeaders();
+    const headersWithToken = this.appendToken(headers);
+
+    return this.http.get<Vendor[]>(this.dataUrl+'/getAll', { headers: headersWithToken });
   }
 
   deleteVendor(catid: number): Observable<Vendor> {
-    return this.http.delete<Vendor>(this.dataUrl + '/delete/' + catid, headerOption).pipe(
+    const headers = new HttpHeaders();
+    const headersWithToken = this.appendToken(headers);
+    
+
+    return this.http.delete<Vendor>(this.dataUrl + '/delete/' + catid,  { headers: headersWithToken }).pipe(
       tap(() => {
         this.refreshNeeded.next();
       })
@@ -53,7 +74,11 @@ export class VendorService {
 
 
   updateVendor(cat: Vendor): Observable<Vendor> {
-    return this.http.put<Vendor>(this.dataUrl + '/update', cat, headerOption).pipe(
+    const headers = new HttpHeaders();
+    const headersWithToken = this.appendToken(headers);
+    
+
+    return this.http.put<Vendor>(this.dataUrl + '/update', cat,  { headers: headersWithToken }).pipe(
       tap(() => {
         this.refreshNeeded.next();
       })
