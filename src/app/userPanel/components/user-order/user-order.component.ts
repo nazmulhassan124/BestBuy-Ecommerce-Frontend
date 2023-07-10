@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Order } from 'src/app/Model/Order.model';
 
 @Component({
   selector: 'app-user-order',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-order.component.css']
 })
 export class UserOrderComponent {
+  orderData:Order[] | undefined
 
 }

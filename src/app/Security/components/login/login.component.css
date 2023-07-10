@@ -6,7 +6,8 @@ a {
     height: 100vh;
     display: inline-block;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    margin-top: 70px;
 }
 .form-right i {
     font-size: 100px;

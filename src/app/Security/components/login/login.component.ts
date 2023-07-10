@@ -1,38 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserServiceService } from '../../service/user-service.service';
+import { UserServiceService } from '../../_service/user-service.service';
+import { UserAuthService } from '../../_service/user-auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
+  errorMessage = '';
 
-  login ={
-userName:"",
-password:""
+  login = {
+    userName: "",
+    password: ""
 
   }
 
-constructor(  private userAuthService: UserServiceService ){}
+  constructor(private userService: UserServiceService ,
+     private userAuthService: UserAuthService,
+     private router: Router
+     ) { }
 
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+   
   }
 
   formSubmit(loginForm: NgForm) {
-     console.log(loginForm.value);
-     
-   this.login.userName= loginForm.value.userName
-   this.login.password= loginForm.value.password
+    console.log(loginForm.value);
 
-    this.userAuthService.login(this.login  ).subscribe((res:any)=>{
-      console.log(res)
+    this.login.userName = loginForm.value.userName
+    this.login.password = loginForm.value.password
+
+    this.userService.login(this.login).subscribe((response:any)=>{
+      console.log(response.jwtToken)
+      console.log(response.user.role)
+      this.userAuthService.setToken(response.jwtToken);
+      this.userAuthService.setRoles(response.user.role);
+      this.userAuthService.setRole(response.user.role[0].roleName)
+
+      const role = response.user.role[0].roleName;
+      if( role=== 'Admin'){
+        this.router.navigate(['/admin']);
+      }else{
+        this.router.navigate(['/userHome']);
+      }
+
+
+    },(error)=>{
+      console.log(error)
     })
-
+    
   
+
   }
 
 
