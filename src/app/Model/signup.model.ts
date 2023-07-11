@@ -4,5 +4,6 @@ export class SignUp {
     userName!: string;
     email!: string;
     password!:number;
+    image!:string;
    
 } 

@@ -11,6 +11,13 @@ import { UserServiceService } from 'src/app/Security/_service/user-service.servi
 })
 export class UserHeaderComponent implements OnInit{
 
+
+
+  test: boolean = false;
+  email: string = "";
+  name: string = "";
+
+
 constructor( private userAuthService : UserAuthService,
   private router : Router,
   public userService : UserServiceService){}
@@ -18,6 +25,7 @@ constructor( private userAuthService : UserAuthService,
   ngOnInit(): void {
     
     // console.log("roles :" +this.userAuthService.getRoles())
+    this.userData();
   }
 
   logout (){ this.userAuthService.clear()
@@ -33,6 +41,19 @@ constructor( private userAuthService : UserAuthService,
 
 roleVarify ( role : any ){
  return this.userService.roleMatch(role);
+}
+
+
+userData() {
+  if (localStorage.getItem('user')) {
+    let userStore = localStorage.getItem('user');
+    let userData = userStore && JSON.parse(userStore);
+    this.name = userData.name;
+    this.email= userData.email
+    this.test = true;
+   // this.cartService.getCartList(userData.id);
+  }
+  
 }
 
 }

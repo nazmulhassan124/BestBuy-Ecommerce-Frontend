@@ -44,6 +44,16 @@ public getRole(): any {
    return localStorage.getItem('jwtToken') || '';
   }
 
+public setUser (res: any ){
+
+  localStorage.setItem('user',JSON.stringify(res.user));
+}
+
+public getUser (){
+
+  
+}
+
   public clear() {
     localStorage.clear();
   }
