@@ -39,7 +39,7 @@ export class AddCategoryComponent implements OnInit{
   
   createOrUpdateCategory(currentCategory: Category) {
 
-    if (currentCategory.catid != null) {
+    if (currentCategory.id != null) {
       this.updateCategory(currentCategory);
     } else {
       this.createCategory(currentCategory);
@@ -49,7 +49,7 @@ export class AddCategoryComponent implements OnInit{
 
   createCategory(cat: Category) {
 
-    if( !cat.catname || !cat.catdesc===null){
+    if( !cat.catName || !cat.catName===null){
       this.msgcolor="red"
       this.msg = " Plese fill all Field "
     }else{

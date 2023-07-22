@@ -1,0 +1,98 @@
+<mat-expansion-panel [expanded]="brandService.panelOpenState">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h2 style="padding-top: 15px;">Add Brand </h2>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Brand ID</mat-label>
+          <input matInput placeholder="Brand id" type="text" [(ngModel)]="brandService.currentBrand.brandId" disabled>
+        </mat-form-field>
+      </div>
+      <div class="col-md-8">
+        <mat-form-field appearance="outline">
+          <mat-label>Brand Name</mat-label>
+          <input matInput placeholder="Write a new Brand name" type="text" [(ngModel)]="brandService.currentBrand.brandName">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Brand Image</mat-label>
+          <input matInput placeholder="Write a new Brand image" type="text" [(ngModel)]="brandService.currentBrand.brandImage">
+        </mat-form-field>
+      </div>
+      <div class="col-md-8">
+        <mat-form-field appearance="outline">
+          <mat-label>Brand Description</mat-label>
+          <input matInput placeholder="Write a new Brand description" type="text" [(ngModel)]="brandService.currentBrand.description">
+        </mat-form-field>
+      </div>
+    </div>
+  <button class="btn btn-success" (click)="createOrUpdate(brandService.currentBrand)"  *ngIf="!buttonview"> <i class="fa fa-save"></i>Save</button>
+  <button class="btn btn-success" (click)="createOrUpdate(brandService.currentBrand)"  *ngIf="buttonview"> <i class="fa fa-save"></i>Update</button>
+  <button class="btn btn-primary" (click)="clear()" (click)="msgclear()"> <i class="fa fa-retweet"></i> Clear</button>
+    <font [color]="msgcolor" size="10px">{{msg}}</font>
+  </mat-expansion-panel>
+<br>
+  <mat-divider></mat-divider>
+<br>
+
+
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Brand List</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput placeholder="Write anything">
+    </mat-form-field>
+    <div>
+      <table mat-table [dataSource]="dataSource">
+       
+        <ng-container matColumnDef="Brand ID">
+          <th mat-header-cell *matHeaderCellDef> Brand ID </th>
+          <td mat-cell *matCellDef="let cat"> {{cat.brandId}} </td>
+        </ng-container>
+         
+        <ng-container matColumnDef="Brand Name">
+          <th mat-header-cell *matHeaderCellDef> Brand Name </th>
+          <td mat-cell *matCellDef="let cat"> {{cat.brandName}} </td>
+        </ng-container>
+
+       
+        <ng-container matColumnDef="Brand Description">
+          <th mat-header-cell *matHeaderCellDef> Brand Description </th>
+          <td mat-cell *matCellDef="let cat"> {{cat.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Brand Images">
+          <th mat-header-cell *matHeaderCellDef> Brand Images </th>
+          <td mat-cell *matCellDef="let cat"> {{cat.brandImage}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let cat">
+            <button mat-raised-button color="primary" (click)="edit(cat)">
+              <i class="fa fa-edit"></i> Edit
+            </button>
+            <button mat-raised-button color="warn" (click)="delete(cat.brandId)">
+              <i class="fa fa-trash"></i> Delete
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let cat; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20, 30, 50, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+

@@ -15,6 +15,8 @@ import { SignupComponent } from './Security/components/signup/signup.component';
 import { LoginComponent } from './Security/components/login/login.component';
 import { ForbiddenComponent } from './Security/components/forbidden/forbidden.component';
 import { AuthGuard } from './Security/_auth/auth.guard';
+import { AddSubcategoryComponent } from './adminPanel/components/add-subcategory/add-subcategory.component';
+import { AddBrandComponent } from './adminPanel/components/add-brand/add-brand.component';
 
 const routes: Routes = [
 {path:'' ,pathMatch:'full', redirectTo:'/userHome' },
@@ -32,7 +34,10 @@ children:[
   {path:'', component: AdminDashboardComponent},
   {path:'category', component: AddCategoryComponent},
   {path:'addproduct' ,component:AddProductsComponent},
-  {path:'addvendor', component: AddVendorComponent}
+  {path:'addvendor', component: AddVendorComponent},
+  {path:'addsubcategory', component: AddSubcategoryComponent},
+  {path:'addbrand', component: AddBrandComponent},
+
 ]}
 
 ];

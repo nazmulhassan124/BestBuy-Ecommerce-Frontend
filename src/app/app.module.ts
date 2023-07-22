@@ -66,6 +66,8 @@ import { LoginComponent } from './Security/components/login/login.component';
 import { AuthGuard } from './Security/_auth/auth.guard';
 import { AuthInterceptor } from './Security/_auth/auth.interceptor';
 import { UserServiceService } from './Security/_service/user-service.service';
+import { AddSubcategoryComponent } from './adminPanel/components/add-subcategory/add-subcategory.component';
+import { AddBrandComponent } from './adminPanel/components/add-brand/add-brand.component';
 
 
 @NgModule({
@@ -88,7 +90,9 @@ import { UserServiceService } from './Security/_service/user-service.service';
     AddProductsComponent,
     AddVendorComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    AddSubcategoryComponent,
+    AddBrandComponent
    
     
 

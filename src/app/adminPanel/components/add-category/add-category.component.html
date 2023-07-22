@@ -8,13 +8,13 @@
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Category ID</mat-label>
-          <input matInput placeholder="Category id" type="text" [(ngModel)]="categoryService.currentCategory.catid" disabled>
+          <input matInput placeholder="Category id" type="text" [(ngModel)]="categoryService.currentCategory.id" disabled>
         </mat-form-field>
       </div>
       <div class="col-md-8">
         <mat-form-field appearance="outline">
           <mat-label>Category Name</mat-label>
-          <input matInput placeholder="Write a new category name" type="text" [(ngModel)]="categoryService.currentCategory.catname">
+          <input matInput placeholder="Write a new category name" type="text" [(ngModel)]="categoryService.currentCategory.catName">
         </mat-form-field>
       </div>
     </div>
@@ -22,13 +22,13 @@
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Category Image</mat-label>
-          <input matInput placeholder="Write a new category image" type="text" [(ngModel)]="categoryService.currentCategory.catimage">
+          <input matInput placeholder="Write a new category image" type="text" [(ngModel)]="categoryService.currentCategory.catImage">
         </mat-form-field>
       </div>
       <div class="col-md-8">
         <mat-form-field appearance="outline">
           <mat-label>Category Description</mat-label>
-          <input matInput placeholder="Write a new category description" type="text" [(ngModel)]="categoryService.currentCategory.catdesc">
+          <input matInput placeholder="Write a new category description" type="text" [(ngModel)]="categoryService.currentCategory.catDesc">
         </mat-form-field>
       </div>
     </div>
@@ -54,23 +54,23 @@
           <!-- ID Column -->
           <ng-container matColumnDef="Category ID">
             <th mat-header-cell *matHeaderCellDef> Category ID </th>
-            <td mat-cell *matCellDef="let cat"> {{cat.catid}} </td>
+            <td mat-cell *matCellDef="let cat"> {{cat.id}} </td>
           </ng-container>
             <!-- Name Column -->
           <ng-container matColumnDef="Category Name">
             <th mat-header-cell *matHeaderCellDef> Category Name </th>
-            <td mat-cell *matCellDef="let cat"> {{cat.catname}} </td>
+            <td mat-cell *matCellDef="let cat"> {{cat.catName}} </td>
           </ng-container>
   
           <!-- Description Column -->
           <ng-container matColumnDef="Category Description">
             <th mat-header-cell *matHeaderCellDef> Category Description </th>
-            <td mat-cell *matCellDef="let cat"> {{cat.catdesc}} </td>
+            <td mat-cell *matCellDef="let cat"> {{cat.catDesc}} </td>
           </ng-container>
 
           <ng-container matColumnDef="Category Images">
             <th mat-header-cell *matHeaderCellDef> Category Images </th>
-            <td mat-cell *matCellDef="let cat"> {{cat.catimage}} </td>
+            <td mat-cell *matCellDef="let cat"> {{cat.catImage}} </td>
           </ng-container>
   
           <ng-container matColumnDef="Actions">
@@ -79,7 +79,7 @@
               <button mat-raised-button color="primary" (click)="editCategory(cat)">
                 <i class="fa fa-edit"></i> Edit
               </button>
-              <button mat-raised-button color="warn" (click)="deleteCategory(cat.catid)">
+              <button mat-raised-button color="warn" (click)="deleteCategory(cat.id)">
                 <i class="fa fa-trash"></i> Delete
               </button>
             </td>
