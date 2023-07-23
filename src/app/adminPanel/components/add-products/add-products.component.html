@@ -1,1 +1,206 @@
-<p>add-products works!</p>
+<mat-expansion-panel [expanded]="productService.panelOpenState">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h2 style="padding-top: 15px;">Add New Product</h2>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Product ID</mat-label>
+          <input matInput placeholder="Product id" type="text" [(ngModel)]="productService.currentProduct.id" disabled>
+        </mat-form-field>
+      </div>
+      <div class="col-md-8">
+        <mat-form-field appearance="outline">
+          <mat-label>Product Name<span style="color: red;">*</span></mat-label>
+          <input matInput placeholder="Write a new Product name" type="text" [(ngModel)]="productService.currentProduct.name">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label   >Select Category <span style="color: red;">*</span></mat-label>
+                <mat-select  [(ngModel)]="productService.currentProduct.catName">
+                    <mat-option  (click)="Catvalue(p)" [value]="p.catName"  *ngFor="let p of allCategory" >{{p.catName}}</mat-option>
+                   
+                  </mat-select>
+              </mat-form-field>
+
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label   >Select SubCategory <span style="color: red;">*</span></mat-label>
+                <mat-select  [(ngModel)]="productService.currentProduct.subCatName">
+                    <mat-option (click)="subCatId(p)"   [value]="p.subCatName"  *ngFor="let p of catwiseSubcat" >{{p.subCatName}}</mat-option>
+                   
+                  </mat-select>
+              </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label   >Select Brand <span style="color: red;">*</span></mat-label>
+                <mat-select  [(ngModel)]="productService.currentProduct.brandName">
+                    <mat-option  (click)="BrandId(p)" [value]="p.brandName"  *ngFor="let p of catwiseBrand" >{{p.brandName}}</mat-option>
+                   
+                  </mat-select>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Regular Price <span style="color: red;">*</span></mat-label>
+          <input matInput placeholder="Write a new price" type="number" [(ngModel)]="productService.currentProduct.regularPrice">
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+            <mat-label>Offer Price</mat-label>
+            <input matInput placeholder="Write offer price" type="number" [(ngModel)]="productService.currentProduct.offerPrice">
+          </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Write a new category description" type="text" [(ngModel)]="productService.currentProduct.description">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Size</mat-label>
+                <input matInput placeholder="Write a new product size" type="text" [(ngModel)]="productService.currentProduct.productSize">
+              </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Color</mat-label>
+              
+                <mat-select  [(ngModel)]="productService.currentProduct.productColor">
+                    <mat-option   value="red"   >Red</mat-option>
+                    <mat-option   value="green"   >Green</mat-option>
+                    <mat-option   value="yellow"   >Yellow</mat-option>
+                    <mat-option   value="black"   >Black</mat-option>
+                    <mat-option   value="orrange"   >Orrange</mat-option>
+                    <mat-option   value="blue"   >Blue</mat-option>
+                   
+                  </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Weight</mat-label>
+                <input matInput placeholder="Write a new Product Weight" type="text" [(ngModel)]="productService.currentProduct.weight">
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Image 1</mat-label>
+                <input matInput placeholder="Select Image One" type="text" [(ngModel)]="productService.currentProduct.productImage_1">
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Image 2</mat-label>
+                <input matInput placeholder="Select Image two" type="text" [(ngModel)]="productService.currentProduct.productImage_2">
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Image 3</mat-label>
+                <input matInput placeholder="Select Image Three" type="text" [(ngModel)]="productService.currentProduct.productImage_3">
+            </mat-form-field>
+        </div>
+    </div>
+  <button class="btn btn-success" (click)="createOrUpdateProduct(productService.currentProduct)"  *ngIf="!buttonview"> <i class="fa fa-save"></i>Save</button>
+  <button class="btn btn-success" (click)="createOrUpdateProduct(productService.currentProduct)"  *ngIf="buttonview"> <i class="fa fa-save"></i>Update</button>
+  <button class="btn btn-primary" (click)="clear()" (click)="msgclear()"> <i class="fa fa-retweet"></i> Clear</button>
+    <font [color]="msgcolor" size="10px">{{msg}}</font>
+  </mat-expansion-panel>
+<br>
+  <mat-divider></mat-divider>
+
+
+  
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Product List</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Write anything">
+      </mat-form-field>
+      <div>
+        <table mat-table [dataSource]="dataSource">
+         
+          <ng-container matColumnDef="Product ID">
+            <th mat-header-cell *matHeaderCellDef> Product ID </th>
+            <td mat-cell *matCellDef="let cat"> {{cat.id}} </td>
+          </ng-container>
+           
+          <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let cat"> {{cat.name}} </td>
+          </ng-container>
+  
+         
+          <ng-container matColumnDef="Regular Price">
+            <th mat-header-cell *matHeaderCellDef>Regular Price </th>
+            <td mat-cell *matCellDef="let cat"> {{cat.regularPrice}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Offer Price">
+            <th mat-header-cell *matHeaderCellDef>Offer Price </th>
+            <td mat-cell *matCellDef="let cat"> {{cat.offerPrice}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Quantity">
+            <th mat-header-cell *matHeaderCellDef>Quantity </th>
+            <td mat-cell *matCellDef="let cat"> {{cat.quantity}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Images">
+            <th mat-header-cell *matHeaderCellDef> Images </th>
+            <td mat-cell *matCellDef="let cat"> {{cat.productImage_1}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Category">
+            <th mat-header-cell *matHeaderCellDef> Category  </th>
+            <td mat-cell *matCellDef="let cat"> {{cat.catName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="SubCategory">
+            <th mat-header-cell *matHeaderCellDef> SubCategory</th>
+            <td mat-cell *matCellDef="let cat"> {{cat.subCatName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Brand">
+            <th mat-header-cell *matHeaderCellDef> Brand </th>
+            <td mat-cell *matCellDef="let cat"> {{cat.brandName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Color">
+            <th mat-header-cell *matHeaderCellDef> Color </th>
+            <td mat-cell *matCellDef="let cat"> {{cat.productColor}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let cat">
+              <button mat-raised-button color="primary" (click)="edit(cat)">
+                <i class="fa fa-edit"></i> Edit
+              </button>
+              <button mat-raised-button color="warn" (click)="delete(cat.id)">
+                <i class="fa fa-trash"></i> Delete
+              </button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let cat; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[ 20, 30, 50, 100]" showFirstLastButtons></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>

@@ -9,10 +9,10 @@ export class Product {
     quantity!:number;
     catId!:any;
     catName!:string;
-    SubCatId!:number;
+    subCatId!:number;
 
-    SubCatName!: string;
-    brandId!:number;
+    subCatName!: any;
+    brandId!:any;
     brandName!:string;
     manufacture!:string;
 
@@ -23,6 +23,8 @@ export class Product {
     productImage_1!:string;
     productImage_2!:string;
     productImage_3!:string;
+
+    createdBy!:any;
    
    
 

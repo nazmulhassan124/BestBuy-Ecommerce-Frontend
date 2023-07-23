@@ -18,13 +18,33 @@
                     </button>
                 </li>
                 <li>
-                    <button mat-icon-button [matMenuTriggerFor]="menu">
-                        <mat-icon>account_circle</mat-icon>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" title="{{name}}">
+                        
+                            <img  id="uimage" src="assets/images/nazmul.jpg" alt="">
+                       
                     </button>
                     <mat-menu #menu="matMenu">
+
+                        <div class="profile-card">
+                            <div class="header">
+                              <h2>{{name}}</h2>
+                              <h4> {{email}}</h4>
+                            </div>
+                            <img src="assets/images/nazmul.jpg"  alt="Admin Image">
+                          </div>
+
+                        <!-- <button mat-menu-item>
+                            <mat-icon>perm_identity</mat-icon>
+                            <a > {{name}} </a>
+                        </button>
                         <button mat-menu-item>
+                            <mat-icon> email</mat-icon>
+                            <a > {{email}} </a>
+                        </button> -->
+                        <br>
+                        <button mat-menu-item class="btn-danger" >
                             <mat-icon>exit_to_app</mat-icon>
-                            <a (click)="logout()"> Sign out </a>
+                            <a (click)="logout()"> <span style="color: black;">Sign out</span> </a>
                         </button>
                     </mat-menu>
                 </li>

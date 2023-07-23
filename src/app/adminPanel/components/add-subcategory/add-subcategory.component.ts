@@ -43,7 +43,7 @@ export class AddSubcategoryComponent implements OnInit{
 Catvalue ( cat : Category){
   this.catname= cat.catName
    this.subCategoryService.currentSubCategory.catName= this.catname;
-   this.subCategoryService.currentSubCategory.catId= cat.id;
+   
  // console.log( " sub Cat"+ this.subCategoryService.currentSubCategory);
 }
   

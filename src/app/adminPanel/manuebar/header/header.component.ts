@@ -9,6 +9,9 @@ import { UserAuthService } from 'src/app/Security/_service/user-auth.service';
 })
 export class HeaderComponent implements OnInit{
 
+  email: string = "";
+  name: string = "";
+
 
   @Output()
   private _toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
@@ -24,6 +27,7 @@ export class HeaderComponent implements OnInit{
     private router:Router) { }
 
   ngOnInit(): void {
+    this. userData();
   }
 
 
@@ -33,4 +37,17 @@ export class HeaderComponent implements OnInit{
 
   logout (){ this.userAuthService.clear();
     this.router.navigate(['/userHome']);}
+
+
+    userData() {
+      if (localStorage.getItem('user')) {
+        let userStore = localStorage.getItem('user');
+        let userData = userStore && JSON.parse(userStore);
+        this.name = userData.name;
+        this.email= userData.email
+        
+       // this.cartService.getCartList(userData.id);
+      }
+      
+    }
 }
