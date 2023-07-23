@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit{
 
   email: string = "";
   name: string = "";
+  image: string = "";
 
 
   @Output()
@@ -45,6 +46,7 @@ export class HeaderComponent implements OnInit{
         let userData = userStore && JSON.parse(userStore);
         this.name = userData.name;
         this.email= userData.email
+        this.image=userData.image
         
        // this.cartService.getCartList(userData.id);
       }
