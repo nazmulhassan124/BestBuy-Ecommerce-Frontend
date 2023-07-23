@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Brand } from 'src/app/Model/brand.model';
+import { Category } from 'src/app/Model/category.model';
 import { BrandServiceService } from 'src/app/service/brandService/brand-service.service';
+import { CategoryService } from 'src/app/service/categoryService/category.service';
 
 @Component({
   selector: 'app-add-brand',
@@ -12,16 +14,19 @@ import { BrandServiceService } from 'src/app/service/brandService/brand-service.
 export class AddBrandComponent  implements OnInit{
  
 
-      displayedColumns: string[] = ['Brand ID', 'Brand Name','Brand Images', 'Brand Description', 'Actions'];
+      displayedColumns: string[] = ['Brand ID', 'Brand Name','Brand Images', 'Brand Description','Category Name', 'Actions'];
   dataSource!: MatTableDataSource<Brand>;
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
   msg="";
   msgcolor="red"
   buttonview= false;
+  allCategory !: Category [];
+  catname: string="";
 
 
       constructor(
-        public brandService: BrandServiceService
+        public brandService: BrandServiceService,
+        public categoryService : CategoryService
       ) { }
 
       ngOnInit(): void {
@@ -29,8 +34,19 @@ export class AddBrandComponent  implements OnInit{
         this.brandService.refreshNeed.subscribe(() => {
           this.getAll();
         });
+        this.categoryService.getAllCategory().subscribe((data: Category[])=>{
+          this.allCategory=data;
+         });
          
       }
+
+      
+Catvalue ( cat : Category){
+  this.catname= cat.catName
+  this.brandService.currentBrand.catName= this.catname;
+  this.brandService.currentBrand.catId= cat.id;
+ // console.log( " sub Cat"+ this.subCategoryService.currentSubCategory);
+}
 
       togglePanel() {
         this.brandService.panelOpenState = !this.brandService.panelOpenState
@@ -50,7 +66,7 @@ export class AddBrandComponent  implements OnInit{
     
       create(cat: Brand) {
     
-        if( !cat.brandName || !cat.brandName===null){
+        if( !cat.brandName || !cat.brandName===null || !cat.catName===null){
           this.msgcolor="red"
           this.msg = " Plese fill all Field "
         }else{
@@ -79,6 +95,7 @@ export class AddBrandComponent  implements OnInit{
     
       edit(cat: Brand) {
         this.brandService.currentBrand = Object.assign({}, cat);
+        this.buttonview=true;
         this.togglePanel();
       }
       

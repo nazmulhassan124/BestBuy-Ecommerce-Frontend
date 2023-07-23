@@ -32,6 +32,26 @@
         </mat-form-field>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-4">
+          <mat-form-field appearance="outline">
+              <mat-label   >Select Category</mat-label>
+             <input matInput placeholder="Select Category " type="text" [(ngModel)]="brandService.currentBrand.catName"> 
+              <mat-select  >
+                  <mat-option  (click)="Catvalue(p)"  *ngFor="let p of allCategory" >{{p.catName}}</mat-option>
+                 
+                </mat-select>
+            </mat-form-field>
+      </div>
+      <div class="col-md-8">
+          <mat-form-field appearance="outline">
+              <mat-label>Category Id</mat-label>
+              <input matInput placeholder="Category Name " type="text" [(ngModel)]="brandService.currentBrand.catId"  disabled>
+            </mat-form-field>
+
+      </div>
+  </div>
   <button class="btn btn-success" (click)="createOrUpdate(brandService.currentBrand)"  *ngIf="!buttonview"> <i class="fa fa-save"></i>Save</button>
   <button class="btn btn-success" (click)="createOrUpdate(brandService.currentBrand)"  *ngIf="buttonview"> <i class="fa fa-save"></i>Update</button>
   <button class="btn btn-primary" (click)="clear()" (click)="msgclear()"> <i class="fa fa-retweet"></i> Clear</button>
@@ -74,6 +94,10 @@
         <ng-container matColumnDef="Brand Images">
           <th mat-header-cell *matHeaderCellDef> Brand Images </th>
           <td mat-cell *matCellDef="let cat"> {{cat.brandImage}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Category Name">
+          <th mat-header-cell *matHeaderCellDef> Category Name </th>
+          <td mat-cell *matCellDef="let cat"> {{cat.catName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Actions">

@@ -78,6 +78,7 @@ export class AddCategoryComponent implements OnInit{
 
   editCategory(cat: Category) {
     this.categoryService.currentCategory = Object.assign({}, cat);
+    this.buttonview=true;
     this.togglePanel();
   }
   

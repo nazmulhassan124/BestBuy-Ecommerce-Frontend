@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Category } from 'src/app/Model/category.model';
 import { SubCategory } from 'src/app/Model/subCategory.model';
+import { CategoryService } from 'src/app/service/categoryService/category.service';
 import { SubCategoryService } from 'src/app/service/subcategoryService/sub-category.service';
 
 @Component({
@@ -11,16 +13,19 @@ import { SubCategoryService } from 'src/app/service/subcategoryService/sub-categ
 })
 export class AddSubcategoryComponent implements OnInit{
 
-  displayedColumns: string[] = ['SubCategory ID', 'SubCategory Name','SubCategory Images', 'SubCategory Description', 'Actions'];
+  displayedColumns: string[] = ['SubCategory ID', 'SubCategory Name','SubCategory Images', 'SubCategory Description','Category Name', 'Actions'];
   dataSource!: MatTableDataSource<SubCategory>;
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
   msg="";
   msgcolor="red"
   buttonview= false;
+  allCategory !: Category [];
+  catname: string="";
 
 
   constructor(
-    public subCategoryService: SubCategoryService
+    public subCategoryService: SubCategoryService,
+    public categoryService : CategoryService
   ) { }
 
   ngOnInit(): void {
@@ -29,9 +34,18 @@ export class AddSubcategoryComponent implements OnInit{
       this.getAll();
     });
      
+     this.categoryService.getAllCategory().subscribe((data: Category[])=>{
+      this.allCategory=data;
+     });
+
   }
 
-
+Catvalue ( cat : Category){
+  this.catname= cat.catName
+   this.subCategoryService.currentSubCategory.catName= this.catname;
+   this.subCategoryService.currentSubCategory.catId= cat.id;
+ // console.log( " sub Cat"+ this.subCategoryService.currentSubCategory);
+}
   
   togglePanel() {
     this.subCategoryService.panelOpenState = !this.subCategoryService.panelOpenState
@@ -51,14 +65,14 @@ export class AddSubcategoryComponent implements OnInit{
 
   create(cat: SubCategory) {
 
-    if( !cat.subCatName || !cat.subCatName===null){
+    if( !cat.subCatName || !cat.subCatName===null || !cat.subCatImage){
       this.msgcolor="red"
       this.msg = " Plese fill all Field "
     }else{
     this.subCategoryService.create(cat).subscribe((data: any) => {
       this.msgcolor="green"
       this.msg = "Saved Successfully!"
-     
+     console.log(cat.catName);
         this.clear();
       
     });
@@ -81,6 +95,7 @@ export class AddSubcategoryComponent implements OnInit{
 
   edit(cat: SubCategory) {
     this.subCategoryService.currentSubCategory = Object.assign({}, cat);
+    this.buttonview=true;
     this.togglePanel();
   }
   
@@ -96,6 +111,7 @@ export class AddSubcategoryComponent implements OnInit{
   clear() {
     this.subCategoryService.currentSubCategory = new SubCategory();
     this.buttonview=false;
+   this.ngOnInit();
   }
   msgclear(){this.msg=""}
 

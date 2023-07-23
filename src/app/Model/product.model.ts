@@ -1,13 +1,30 @@
 export class Product {
-    pro_id!: number;
-    catid!:any;
-    pro_name!:string;
-    pro_cat!:string;
-    pro_image!: string;
-    pro_price!:number;
-    pro_desc!:string;
+
+    id!: number;
+    name!:string;
+    regularPrice!:number;
+    offerPrice!:number;
+    description!:string;
+
+    quantity!:number;
+    catId!:any;
+    catName!:string;
+    SubCatId!:number;
+
+    SubCatName!: string;
+    brandId!:number;
+    brandName!:string;
+    manufacture!:string;
+
+    productSize!:string;
+    productColor!:string;
+    weight!:any;
+
+    productImage_1!:string;
+    productImage_2!:string;
+    productImage_3!:string;
+   
+   
 
     
-    pro_qnt: undefined |number;
-    cart_id!:number;
 }

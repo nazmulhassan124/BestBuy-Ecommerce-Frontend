@@ -33,6 +33,25 @@
         </mat-form-field>
       </div>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label   >Select Category</mat-label>
+               <input matInput placeholder="Select Category " type="text" [(ngModel)]="subCategoryService.currentSubCategory.catName"> 
+                <mat-select  >
+                    <mat-option  (click)="Catvalue(p)"   *ngFor="let p of allCategory" >{{p.catName}}</mat-option>
+                   
+                  </mat-select>
+              </mat-form-field>
+        </div>
+        <div class="col-md-8">
+            <mat-form-field appearance="outline">
+                <mat-label>Category Id </mat-label>
+                <input matInput placeholder="Category Name "  type="text" [(ngModel)]="subCategoryService.currentSubCategory.catId"  disabled>
+              </mat-form-field>
+
+        </div>
+    </div>
   <button class="btn btn-success" (click)="createOrUpdate(subCategoryService.currentSubCategory)"  *ngIf="!buttonview"> <i class="fa fa-save"></i>Save</button>
   <button class="btn btn-success" (click)="createOrUpdate(subCategoryService.currentSubCategory)"  *ngIf="buttonview"> <i class="fa fa-save"></i>Update</button>
   <button class="btn btn-primary" (click)="clear()" (click)="msgclear()"> <i class="fa fa-retweet"></i> Clear</button>
@@ -75,6 +94,11 @@
           <ng-container matColumnDef="SubCategory Images">
             <th mat-header-cell *matHeaderCellDef> SubCategory Images </th>
             <td mat-cell *matCellDef="let cat"> {{cat.subCatImage}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Category Name">
+            <th mat-header-cell *matHeaderCellDef> Category Name </th>
+            <td mat-cell *matCellDef="let cat"> {{cat.catName}} </td>
           </ng-container>
   
           <ng-container matColumnDef="Actions">
