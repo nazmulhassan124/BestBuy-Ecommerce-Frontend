@@ -30,6 +30,12 @@ export class BrandServiceService {
   }
 
 
+ //get category wise Brand
+ getCatWiseBrand(catid:any): Observable<Brand[]> {
+  return this.http.get<Brand[]>(this.dataUrl+'/getCatwiseBrand?catId='+catid, headerOption);
+}
+
+
   getAll(): Observable<Brand[]> {
     return this.http.get<Brand[]>(this.dataUrl+'/getAll', headerOption);
   }

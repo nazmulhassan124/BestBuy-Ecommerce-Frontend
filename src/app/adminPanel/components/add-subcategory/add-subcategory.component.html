@@ -37,9 +37,9 @@
         <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label   >Select Category</mat-label>
-               <input matInput placeholder="Select Category " type="text" [(ngModel)]="subCategoryService.currentSubCategory.catName"> 
-                <mat-select  >
-                    <mat-option  (click)="Catvalue(p)"   *ngFor="let p of allCategory" >{{p.catName}}</mat-option>
+              
+                <mat-select [(ngModel)]="subCategoryService.currentSubCategory.catName" >
+                    <mat-option  (click)="Catvalue(p)" [value]="p.catName"  *ngFor="let p of allCategory" >{{p.catName}}</mat-option>
                    
                   </mat-select>
               </mat-form-field>

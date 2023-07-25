@@ -27,6 +27,11 @@ export class SubCategoryService {
     return this.refreshNeeded;
   }
 
+  //get category wise Subcat
+  getCategoryWiseProduct(catid:string): Observable<SubCategory[]> {
+    return this.http.get<SubCategory[]>(this.dataUrl+'/getCategoryWiseSubCat?catId='+catid, headerOption);
+  }
+
 
   getAll(): Observable<SubCategory[]> {
     return this.http.get<SubCategory[]>(this.dataUrl+'/getAll', headerOption);

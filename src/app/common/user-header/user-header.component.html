@@ -71,7 +71,7 @@
             <a class="nav-link dropdown-toggle mx-1 text-uppercase" data-bs-toggle="dropdown" href="#"
               aria-expanded="false">Category</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" ></a></li>  
+              <li><a class="dropdown-item" *ngFor="let c of allCategory">{{c.catName}}</a></li>
             </ul>
           </li>
           <li class="nav-item">

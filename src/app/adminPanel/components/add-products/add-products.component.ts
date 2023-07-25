@@ -51,14 +51,34 @@ export class AddProductsComponent implements OnInit{
       this.allCategory=data;
      });
 
-     this.subcategoryService.getAll().subscribe((data: SubCategory[])=>{
-      this.catwiseSubcat=data;
-     });
+    //  this.subcategoryService.getAll().subscribe((data: SubCategory[])=>{
+    //   this.catwiseSubcat=data;
+    //  });
 
-     this.brandService.getAll().subscribe((data: Brand[])=>{
-      this.catwiseBrand=data;
-     });
+    //  this.brandService.getAll().subscribe((data: Brand[])=>{
+    //   this.catwiseBrand=data;
+    //  });
   }
+
+  catwiseSubcategory(  cat :Category ){
+    this.subcategoryService.getCategoryWiseProduct(cat.id).subscribe((data:SubCategory[])=>{
+      this.catwiseSubcat=data;
+
+    })
+
+    this.brandService. getCatWiseBrand(cat.id).subscribe((data:Brand[])=>{
+      this.catwiseBrand=data;
+
+    })
+    
+  }
+
+  // catwisebrand(  cat :Category ){
+  //   this.brandService.getBrandWiseProduct(cat.id).subscribe((data:Brand[])=>{
+  //     this.catwiseBrand=data;
+
+  //   })
+  // }
 
   Catvalue ( cat : Category){
     this.productService.currentProduct.catId= cat.id;
