@@ -35,6 +35,7 @@
                     aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner" style="max-height: 75vh;">
+               
                 <div class="carousel-item active" data-bs-interval="10000">
                     <img src="assets/images/carousel_4.png" class="d-block w-100" alt="..."> 
                     <div class="carousel-caption d-none d-md-block">
@@ -73,7 +74,7 @@
 <!-- carousel end -->
 
 <!-- Categories Start -->
-<div class="container">
+<!-- <div class="container">
     <h2>CATEGORIES</h2>
     <mat-divider></mat-divider><br>
     <div class="container row ">
@@ -85,13 +86,13 @@
                     </div>
                     <div class="card-body" id="cat-body">
                         <h4 class="card-title text-center font-weight-bold">{{category.catName}}</h4>
-                        <!-- <p class="card-text">{{category.catDesc}}</p> -->
+                     
                     </div>
                 </div>
             </a>
         </div>
     </div>
-</div><br><br>
+</div><br><br> -->
 <!-- Categories End -->
 
 <!-- RECENT PRODUCTS Start -->
@@ -101,9 +102,11 @@
     <div class="container row">
         <div class="col-md-3 mb-3" *ngFor = "let product of allProduct">
             <div class="card shadow">
+                <a href=""   [routerLink]="['/product/',product.id,'view']">
                 <div class="hoverImg">
                     <img src="{{product.productImage_1}}" style="height:130px;"  alt="" class="card-img-top">
                 </div>
+            </a>
                 <div class="card-body">
                     <h3 class="card-title text-center font-weight-bold">{{product.name}}</h3>
                     
@@ -111,8 +114,8 @@
                     <div class="text-center text-danger">Price: ৳ {{product.regularPrice}}</div>
                     <p class="text-center">{{product.description}}</p>
                     <div class="text-center">
-                        <button href="" class="btn-card"> CART</button>
-                        <button href="" class="btn-view" >VIEW</button>
+                        <button href="" class="btn-card">Add to CART</button>
+                        <!-- <button href="" class="btn-view" [routerLink]="['/product/',product.id,'view']" >VIEW</button> -->
                     </div>
                 </div>
             </div>

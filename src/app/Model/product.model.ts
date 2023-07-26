@@ -26,7 +26,7 @@ export class Product {
 
     createdBy!:any;
    
-   
+    cart_id!:any;
 
     
 }

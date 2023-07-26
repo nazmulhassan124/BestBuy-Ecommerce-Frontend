@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { Brand } from 'src/app/Model/brand.model';
 import { Category } from 'src/app/Model/category.model';
 import { Product } from 'src/app/Model/product.model';
@@ -20,6 +20,11 @@ export class HomeService {
 
   constructor(private http: HttpClient) { }
 
+ private refreshNeeded = new Subject<void>();
+  get refreshNeed() {
+    return this.refreshNeeded;
+  }
+
    getAllProduct(): Observable<Product[]> {
     return this.http.get<Product[]>(this.dataUrl+'/getAllProduct', headerOption);
   }
@@ -34,4 +39,13 @@ export class HomeService {
   getAllBrand(): Observable<Brand[]> {
     return this.http.get<Brand[]>(this.dataUrl+'/getAllBrand', headerOption);
   }
+
+  getById(pid: number): Observable<Product> {
+    return this.http.get<Product>(this.dataUrl + '/getProductById/' + pid, headerOption).pipe(
+      tap(() => {
+        this.refreshNeeded.next();
+      })
+    );
+  }
+
 }

@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { Product } from 'src/app/Model/product.model';
 
@@ -13,6 +13,8 @@ const headerOption = {
   providedIn: 'root'
 })
 export class ProductService {
+
+  cartData1 = new EventEmitter<Product[] | []>();
 
   dataUrl = 'http://localhost:8080/p1/product';
 
@@ -64,7 +66,43 @@ export class ProductService {
     );
   }
 
- 
+ // localStorege add to cart
+ localAddToCart(data:Product){
+  let cartData = [];
+  let localCart = localStorage.getItem('localCart');
+  if(!localCart){
+    localStorage.setItem('localCart',JSON.stringify([data]));
+    this.cartData1.emit([data]);
+  }else{
+    cartData = JSON.parse(localCart);
+    cartData.push(data);
+    localStorage.setItem('localCart',JSON.stringify(cartData));
+    this.cartData1.emit(cartData);
 
+  }
+}
+
+
+  //prodcut remove from localStorage
+  removeItemFromCart(productId:Number){
+    let cartData=localStorage.getItem('localCart');
+    if(cartData){
+      let items:Product[]=JSON.parse(cartData);
+      items = items.filter((item:Product)=> productId!==item.id);
+      localStorage.setItem('localCart',JSON.stringify(items));
+      this.cartData1.emit(items);
+    }
+  }
+  
+ //cart data show from localStorage
+ getCartFromLocal(){
+  let cartData = [];
+  let localCart = localStorage.getItem('localCart');
+  if(localCart){
+    cartData = JSON.parse(localCart);
+  }
+  return cartData;
+
+}
 
 }
