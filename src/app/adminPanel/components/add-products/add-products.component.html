@@ -165,7 +165,7 @@
 
           <ng-container matColumnDef="Images">
             <th mat-header-cell *matHeaderCellDef> Images </th>
-            <td mat-cell *matCellDef="let cat"> {{cat.productImage_1}} </td>
+            <td mat-cell *matCellDef="let cat"><img height="30px" width="35px" src="{{cat.productImage_1}}" alt="product image">  </td>
           </ng-container>
 
           <ng-container matColumnDef="Category">
@@ -187,12 +187,12 @@
   
           <ng-container matColumnDef="Actions">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
-            <td mat-cell *matCellDef="let cat">
-              <button mat-raised-button color="primary" (click)="edit(cat)">
-                <i class="fa fa-edit"></i> Edit
+            <td mat-cell *matCellDef="let cat" >
+              <button mat-mini-fab color="primary" color="primary" class="me-md-3" (click)="edit(cat)" matTooltip="Edit">
+                <i class="fa fa-edit"></i> 
               </button>
-              <button mat-raised-button color="warn" (click)="delete(cat.id)">
-                <i class="fa fa-trash"></i> Delete
+              <button mat-mini-fab  color="warn" class="btn btn-sm " (click)="delete(cat.id)" matTooltip="Delete">
+                <i class="fa fa-trash"></i> 
               </button>
             </td>
           </ng-container>
