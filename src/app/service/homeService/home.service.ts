@@ -48,4 +48,14 @@ export class HomeService {
     );
   }
 
+   //get category wise Subcat
+   getCategoryWiseProduct(catid:string): Observable<SubCategory[]> {
+    return this.http.get<SubCategory[]>(this.dataUrl+'/getCategoryWiseSubCat?catId='+catid, headerOption);
+  }
+
+ //get category wise Brand
+ getCatWiseBrand(catid:any): Observable<Brand[]> {
+  return this.http.get<Brand[]>(this.dataUrl+'/getCatwiseBrand?catId='+catid, headerOption);
+}
+
 }

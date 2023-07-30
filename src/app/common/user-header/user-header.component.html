@@ -41,6 +41,9 @@
   <nav class="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 shadow-sm">
     <div class="container">
       <a class="navbar-brand" href="#"><i class="fa-solid fa-shop me-2"></i> <strong>BESTBUY SHOP</strong></a>
+
+
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -53,6 +56,26 @@
           <input type="text" class="form-control border-warning" style="color:#7a7a7a">
           <button class="btn btn-warning text-white">Search</button>
         </div>
+<!-- For Mobile View -->
+        <div>
+ 
+          <button mat-button [matMenuTriggerFor]="categories"  color="primary" class="btn"  >CATEGORIES  </button>
+          <mat-menu #categories="matMenu" >
+            <button mat-menu-item></button>
+            <button mat-menu-item  [matMenuTriggerFor]="subcat"  *ngFor="let c of allCategory"  (mouseover)="catwiseSubcategory(c)" (click)="catwiseSubcategory(c)"> {{c.catName}}</button>
+          </mat-menu>
+          <mat-menu #subcat="matMenu">
+            
+            <button mat-menu-item [matMenuTriggerFor]="brand" *ngFor="let p of catwiseSubcat">{{p.subCatName}}</button>
+          </mat-menu>
+          
+          <mat-menu  #brand="matMenu" >
+            <button mat-menu-item  *ngFor="let b of catwiseBrand">{{b.brandName}}</button>
+          </mat-menu>
+
+</div>
+
+
       </div>
       <div class=" collapse navbar-collapse" id="navbarNavDropdown">
         <div class="ms-5 d-none d-lg-block">
@@ -67,13 +90,33 @@
           <li class="nav-item">
             <a class="nav-link mx-1 text-uppercase active" aria-current="page" routerLink="/">Home</a>
           </li>
-          <li class="nav-item dropdown">
+          <!-- categories on dropdown -->
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle mx-1 text-uppercase" data-bs-toggle="dropdown" href="#"
               aria-expanded="false">Category</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" *ngFor="let c of allCategory">{{c.catName}}</a></li>
             </ul>
-          </li>
+          </li> -->
+       <!-- Categories By Angular Material -->
+
+          <li class="nav-item">
+          
+          <button mat-button [matMenuTriggerFor]="categories"  color="primary"   >CATEGORIES </button>
+          <mat-menu #categories="matMenu" >
+            <button mat-menu-item></button>
+            <button mat-menu-item  [matMenuTriggerFor]="subcat"  *ngFor="let c of allCategory"  (mouseover)="catwiseSubcategory(c)" (click)="catwiseSubcategory(c)"> {{c.catName}}</button>
+          </mat-menu>
+          <mat-menu #subcat="matMenu">
+            
+            <button mat-menu-item [matMenuTriggerFor]="brand" *ngFor="let p of catwiseSubcat">{{p.subCatName}}</button>
+          </mat-menu>
+          
+          <mat-menu  #brand="matMenu" >
+            <button mat-menu-item  *ngFor="let b of catwiseBrand">{{b.brandName}}</button>
+          </mat-menu>
+        </li>
+         
           <li class="nav-item">
             <a class="nav-link mx-1 text-uppercase" routerLink="/contact">Contact us</a>
           </li>

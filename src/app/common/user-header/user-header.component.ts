@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Brand } from 'src/app/Model/brand.model';
 import { Category } from 'src/app/Model/category.model';
+import { SubCategory } from 'src/app/Model/subCategory.model';
 import { UserAuthService } from 'src/app/Security/_service/user-auth.service';
 import { UserServiceService } from 'src/app/Security/_service/user-service.service';
+import { BrandServiceService } from 'src/app/service/brandService/brand-service.service';
 import { HomeService } from 'src/app/service/homeService/home.service';
+import { SubCategoryService } from 'src/app/service/subcategoryService/sub-category.service';
 
 
 @Component({
@@ -21,10 +25,15 @@ export class UserHeaderComponent implements OnInit{
 
   allCategory !: Category [];
 
+  catwiseSubcat!:SubCategory[];
+  catwiseBrand!: Brand[];
+
 constructor( private userAuthService : UserAuthService,
   private router : Router,
   public userService : UserServiceService,
-  public homeService : HomeService){}
+  public homeService : HomeService,
+  public subcategoryService: SubCategoryService,
+  public brandService: BrandServiceService){}
 
   ngOnInit(): void {
     
@@ -63,5 +72,19 @@ userData() {
   }
   
 }
+
+catwiseSubcategory(  cat :Category ){
+  this.homeService.getCategoryWiseProduct(cat.id).subscribe((data:SubCategory[])=>{
+    this.catwiseSubcat=data;
+
+  })
+
+ this.homeService. getCatWiseBrand(cat.id).subscribe((data:Brand[])=>{
+      this.catwiseBrand=data;
+
+    })
+  
+}
+
 
 }

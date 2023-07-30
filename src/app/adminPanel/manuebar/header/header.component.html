@@ -1,12 +1,20 @@
 <mat-toolbar>
     <mat-toolbar-row>
         <button mat-icon-button (click)="toggleSideBar()">
-            <mat-icon>menu</mat-icon>
+            <i class="fas fa-bars"></i>
+            <!-- <mat-icon>menu</mat-icon> -->
         </button>
         <span>Admin Panel</span>
         
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
+               
+                <li>
+                    <button class="btn">
+                       
+                        <a href="/"> <i class="fa fa-home" aria-hidden="true"></i></a>
+                    </button>
+                </li>
                 <li>
                     <button mat-icon-button>
                         <mat-icon>settings</mat-icon>
@@ -42,9 +50,10 @@
                             <a > {{email}} </a>
                         </button> -->
                         <br>
-                        <button mat-menu-item class="btn-danger" >
+                        <button mat-menu-item class="btn-danger" (click)="logout()" >
                             <mat-icon>exit_to_app</mat-icon>
-                            <a (click)="logout()"> <span style="color: black;">Sign out</span> </a>
+                            <a  > <span style="color: black;">Sign out</span></a>
+                             
                         </button>
                     </mat-menu>
                 </li>

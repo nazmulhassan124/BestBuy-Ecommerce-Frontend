@@ -70,6 +70,7 @@ import { AddSubcategoryComponent } from './adminPanel/components/add-subcategory
 import { AddBrandComponent } from './adminPanel/components/add-brand/add-brand.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
