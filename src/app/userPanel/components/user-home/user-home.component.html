@@ -114,7 +114,8 @@
                     <div class="text-center text-danger">Price: ৳ {{product.regularPrice}}</div>
                     <p class="text-center">{{product.description}}</p>
                     <div class="text-center">
-                        <button href="" class="btn-card">Add to CART</button>
+                        <button   class="btn-card" (click)="addToCart(product)" >Add to CART</button>
+                       
                         <!-- <button href="" class="btn-view" [routerLink]="['/product/',product.id,'view']" >VIEW</button> -->
                     </div>
                 </div>

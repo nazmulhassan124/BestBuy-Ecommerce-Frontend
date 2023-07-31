@@ -14,6 +14,8 @@ const headerOption = {
 })
 export class ProductService {
 
+  removeCart = false;
+
   cartData1 = new EventEmitter<Product[] | []>();
 
   dataUrl = 'http://localhost:8080/p1/product';

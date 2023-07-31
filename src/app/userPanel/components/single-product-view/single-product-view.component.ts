@@ -16,7 +16,7 @@ export class SingleProductViewComponent implements OnInit{
   id!: number;
   allProduct: Product = new Product;
   productQuantity: number = 1;
-  removeCart = false;
+  // removeCart = false;
   cartData!: Product;
 
 
@@ -38,9 +38,9 @@ export class SingleProductViewComponent implements OnInit{
         let items = JSON.parse(cartData);
         items = items.filter((item: Product) => this.id == item.id)
         if (items.length) {
-          this.removeCart = true
+          this.productService.removeCart = true
         } else {
-          this.removeCart = false
+          this.productService.removeCart = false
         }
       }
 
@@ -53,7 +53,7 @@ export class SingleProductViewComponent implements OnInit{
           let item = result.filter((item: Product) => this.id?.toString() === item.id?.toString());
           if (item.length) {
             this.cartData = item[0];
-            this.removeCart = true;
+            this.productService.removeCart = true;
           }
         })
       }
@@ -78,7 +78,7 @@ export class SingleProductViewComponent implements OnInit{
       this.allProduct.quantity = this.productQuantity;
       if (!localStorage.getItem('user')) {
         this.productService.localAddToCart(this.allProduct);
-        this.removeCart = true
+        this.productService.removeCart = true
       } else {
         let user = localStorage.getItem('user');
         let userId = user && JSON.parse(user).id
@@ -92,7 +92,7 @@ export class SingleProductViewComponent implements OnInit{
         this.cartService.addToCart(cartData).subscribe((result) => {
           if (result) {
             this.cartService.getCartList(userId);
-            this.removeCart = true;
+            this.productService.removeCart = true;
           }
         });
 
@@ -107,7 +107,7 @@ export class SingleProductViewComponent implements OnInit{
   removeToCart(pro_id: number) {
     if (!localStorage.getItem('user')) {
       this.productService.removeItemFromCart(pro_id);
-      this.removeCart = false;
+      this.productService.removeCart = false;
     } else {
       this.cartService.removeToCart(this.cartData.cart_id)
         .subscribe((result) => {
@@ -116,7 +116,7 @@ export class SingleProductViewComponent implements OnInit{
           this.cartService.getCartList(userId)
         })
     }
-    this.removeCart = false
+    this.productService.removeCart = false
     alert("Remove to cart Completed!!")
   }
 

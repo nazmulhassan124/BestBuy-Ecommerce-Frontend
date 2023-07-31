@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Brand } from 'src/app/Model/brand.model';
+import { Cart } from 'src/app/Model/cart.model';
 import { Category } from 'src/app/Model/category.model';
 import { Product } from 'src/app/Model/product.model';
 import { SubCategory } from 'src/app/Model/subCategory.model';
+import { AddtoCartService } from 'src/app/service/addtoCart/addto-cart.service';
 import { HomeService } from 'src/app/service/homeService/home.service';
+import { ProductService } from 'src/app/service/productService/product.service';
 
 @Component({
   selector: 'app-user-home',
@@ -12,13 +15,18 @@ import { HomeService } from 'src/app/service/homeService/home.service';
 })
 export class UserHomeComponent implements OnInit{
 
+  productQuantity: number = 1;
+
   allProduct!:Product[];
   allCategory !: Category [];
   allBrand!: Brand[];
   allSubcat!:SubCategory[];
+  cartproduct: Product = new Product;
 
   constructor(
     public homeService: HomeService,
+    public productService: ProductService,
+    public cartService: AddtoCartService,
     
   ) { }
 
@@ -42,5 +50,38 @@ export class UserHomeComponent implements OnInit{
      });
 
   }
+
+  addToCart(cartPro : Product) {
+    this.cartproduct=cartPro;
+
+    if (this.cartproduct) {
+      this.cartproduct.quantity = this.productQuantity;
+      if (!localStorage.getItem('user')) {
+        this.productService.localAddToCart(this.cartproduct);
+        this.productService.removeCart = true
+      } else {
+        let user = localStorage.getItem('user');
+        let userId = user && JSON.parse(user).id
+        let cartData: Cart = {
+          ...this.cartproduct,
+          userId,
+          cart_id: undefined,
+
+        }
+
+        this.cartService.addToCart(cartData).subscribe((result) => {
+          if (result) {
+            this.cartService.getCartList(userId);
+            this.productService.removeCart = true;
+          }
+        });
+
+      }
+    //  alert("Add to cart Completed!!")
+      // this.router.navigate(['/card'])
+     // this.ngOnInit();
+    }
+  }
+
 
 }

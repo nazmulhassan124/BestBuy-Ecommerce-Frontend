@@ -102,7 +102,7 @@
 
           <li class="nav-item">
           
-          <button mat-button [matMenuTriggerFor]="categories"  color="primary"   >CATEGORIES </button>
+          <button mat-button [matMenuTriggerFor]="categories"  color="primary"  >CATEGORIES </button>
           <mat-menu #categories="matMenu" >
             <button mat-menu-item></button>
             <button mat-menu-item  [matMenuTriggerFor]="subcat"  *ngFor="let c of allCategory"  (mouseover)="catwiseSubcategory(c)" (click)="catwiseSubcategory(c)"> {{c.catName}}</button>
@@ -122,7 +122,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link mx-1 text-uppercase" routerLink="/cart"><i
-                class="fa-solid fa-cart-shopping me-1"></i>Cart</a>
+                class="fa-solid fa-cart-shopping me-1"></i>Cart({{cartItems}})</a>
           </li>
           <li class="nav-item" > 
             <a  class="nav-link mx-1 text-uppercase" routerLink="/userOrder"   *ngIf="userService.roleMatch('User')"  >My Order</a>
