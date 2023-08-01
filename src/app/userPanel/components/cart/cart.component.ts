@@ -13,6 +13,8 @@ import { ProductService } from 'src/app/service/productService/product.service';
 })
 export class CartComponent implements OnInit{
 
+  checkoutbutton = false;
+
   cartData: Cart[] | undefined;
   priceSummery: PriceSummery = {
     price: 0,
@@ -30,6 +32,11 @@ export class CartComponent implements OnInit{
      
   ngOnInit(): void {
     this.loadDetails();
+    if(localStorage.getItem('user')){
+      this.checkoutbutton=true;
+      
+    }
+
   }
 
   removeToCart(cartId:number|undefined){
@@ -84,6 +91,16 @@ export class CartComponent implements OnInit{
     } 
     
   }
+
+
+  redirectToCheckoutPage(){
+    if(localStorage.getItem('user')){
+      localStorage.setItem('totalPrice',JSON.stringify(this.priceSummery.total));
+      
+      this.router.navigate(['/checkout'])
+    }
+  }
+
 
 
 }

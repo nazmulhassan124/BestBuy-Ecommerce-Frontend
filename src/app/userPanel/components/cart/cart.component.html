@@ -62,7 +62,7 @@
                       <h2>Total</h2>
                       <h2>৳ {{priceSummery.total}}</h2>
                   </div>
-                  <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                  <button *ngIf="checkoutbutton" class="btn btn-block btn-warning font-weight-bold my-3 py-3"  (click)="redirectToCheckoutPage()" >Proceed To Checkout</button>
               </div>
           </div>
       </div>
