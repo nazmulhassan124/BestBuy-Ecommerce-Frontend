@@ -14,7 +14,7 @@ const headerOption = {
 })
 export class ProductService {
 
-  removeCart = false;
+ 
 
   cartData1 = new EventEmitter<Product[] | []>();
 

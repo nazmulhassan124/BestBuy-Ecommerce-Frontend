@@ -102,8 +102,8 @@
                             </button>
                         </div>
                     </div>
-                    <button *ngIf="!productService.removeCart" class="btn btn-warning px-3"(click)="addToCart()"><i class="fa fa-shopping-cart mr-1"></i>Add ToCart</button>
-                    <button *ngIf="productService.removeCart" class="btn btn-warning px-3"(click)="removeToCart(allProduct.id)"><i class="fa fa-shopping-cart mr-1"></i>Remove ToCart</button>
+                    <button *ngIf="!removeCart" class="btn btn-warning px-3"(click)="addToCart()"><i class="fa fa-shopping-cart mr-1"></i>Add ToCart</button>
+                    <button *ngIf="removeCart" class="btn btn-warning px-3"(click)="removeToCart(allProduct.id)"><i class="fa fa-shopping-cart mr-1"></i>Remove ToCart</button>
                 </div> 
 
 <!-- cart quantity End -->

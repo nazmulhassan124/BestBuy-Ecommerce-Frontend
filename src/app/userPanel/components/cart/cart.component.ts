@@ -62,9 +62,9 @@ export class CartComponent implements OnInit{
       let result = this.productService.getCartFromLocal();
       this.cartData = result;
       let price = 0;
-      result.forEach((item: { pro_qnt: string | number; pro_price: string | number; }) => {
-        if(item.pro_qnt){
-          price = price + (+item.pro_price* +item.pro_qnt);
+      result.forEach((item: { quantity: string | number; regularPrice: string | number; }) => {
+        if(item.quantity){
+          price = price + (+item.regularPrice* +item.quantity);
         }
         
       });

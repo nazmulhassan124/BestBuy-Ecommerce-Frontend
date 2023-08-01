@@ -28,13 +28,13 @@ export class AddtoCartService {
   }
 
   addToCart(cartData: Cart) {
-    return this.http.post('http://localhost:8080/p2/cart/post', cartData);
+    return this.http.post('http://localhost:8080/cart/post', cartData);
   }
 
 
   getCartList(userId: number) {
     return this.http
-      .get<Product[]>('http://localhost:8080/p2/cart/getCartList?userId=' + userId, {
+      .get<Product[]>('http://localhost:8080/cart/getCartList?userId=' + userId, {
         observe: 'response',
       })
       .subscribe((result) => {
@@ -46,7 +46,7 @@ export class AddtoCartService {
 
   removeToCart(cartId:number): Observable<Cart> {
     console.warn("hit to removeCart/"+cartId)
-    return this.http.delete<Cart>('http://localhost:8080/p2/cart/delete/' + cartId, headerOption).pipe(
+    return this.http.delete<Cart>('http://localhost:8080/cart/delete/' + cartId, headerOption).pipe(
       tap(() => {
         this.refreshNeeded.next();
       })
@@ -56,7 +56,7 @@ export class AddtoCartService {
   currentCart(){
     let userStore= localStorage.getItem('user');
     let userData = userStore && JSON.parse(userStore);
-    return this.http.get<Cart[]>('http://localhost:8080/p2/cart/getCartList?userId=' + userData.id)
+    return this.http.get<Cart[]>('http://localhost:8080/cart/getCartList?userId=' + userData.userId)
   }
 
 

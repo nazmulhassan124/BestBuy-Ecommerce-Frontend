@@ -1,8 +1,8 @@
 
 
 export class Cart{
-    cart_id:any;
-    userId!:number;   // user id //fk
+    cart_id:number | undefined;
+    userId!:number | undefined;   // user id //fk
     catId!:any;
 
     id!:any; // product id

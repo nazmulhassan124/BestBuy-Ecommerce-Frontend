@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Brand } from 'src/app/Model/brand.model';
 import { Cart } from 'src/app/Model/cart.model';
 import { Category } from 'src/app/Model/category.model';
@@ -27,6 +28,7 @@ export class UserHomeComponent implements OnInit{
     public homeService: HomeService,
     public productService: ProductService,
     public cartService: AddtoCartService,
+    public router:Router,
     
   ) { }
 
@@ -57,11 +59,12 @@ export class UserHomeComponent implements OnInit{
     if (this.cartproduct) {
       this.cartproduct.quantity = this.productQuantity;
       if (!localStorage.getItem('user')) {
-        this.productService.localAddToCart(this.cartproduct);
-        this.productService.removeCart = true
+        this.router.navigateByUrl('/login');
+        // this.productService.localAddToCart(this.cartproduct);
+     
       } else {
         let user = localStorage.getItem('user');
-        let userId = user && JSON.parse(user).id
+        let userId = user && JSON.parse(user).userId
         let cartData: Cart = {
           ...this.cartproduct,
           userId,
@@ -72,7 +75,7 @@ export class UserHomeComponent implements OnInit{
         this.cartService.addToCart(cartData).subscribe((result) => {
           if (result) {
             this.cartService.getCartList(userId);
-            this.productService.removeCart = true;
+           
           }
         });
 
