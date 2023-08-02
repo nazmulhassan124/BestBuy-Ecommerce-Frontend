@@ -9,7 +9,8 @@
         <h1 class="text-center">Checkout Page</h1>
         <h1 class="text-left">Billing Address</h1>
         <mat-divider></mat-divider><br>
-        <div class="col-lg-8">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-4 col-lg-4">
             <div class=" p-30 mb-5">
                 <form #orderData="ngForm" (ngSubmit)="orderNow(orderData.value)">
                     <div class="row">
@@ -28,15 +29,20 @@
                         <div class="col-md-6 form-group">
                             <label>Address</label>
                             <input class="form-control" type="text" placeholder="write your address" name="address" ngModel>
-                        </div><br><br>
+                        </div>
+                        <br><br> <br>
                         <div class="col-md-6 form-group "><br>
-                            <button  class="btn  " style="height: 40px; width: 400px; background-color:aquamarine; " type="submit" >Order now</button>
+                            <button  class="btn  " style="height: 40px; width: 400px; background-color:aquamarine; " type="submit" title="Click for oder">Order now</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-4 col-lg-4">
+            <h2>Nit Amount : ৳ {{nitPrice}}</h2>
+            <h2>Other Cost : ৳ {{otherCost}}</h2>
+            <mat-divider></mat-divider><br>
             <h2>Total Amount : ৳ {{totalPrice}}</h2>
             <h3>Payment Method : <b>Pay on delivery</b></h3>
         </div>
