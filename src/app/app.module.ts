@@ -68,6 +68,7 @@ import { AuthInterceptor } from './Security/_auth/auth.interceptor';
 import { UserServiceService } from './Security/_service/user-service.service';
 import { AddSubcategoryComponent } from './adminPanel/components/add-subcategory/add-subcategory.component';
 import { AddBrandComponent } from './adminPanel/components/add-brand/add-brand.component';
+import { OrderDetailsComponent } from './userPanel/components/order-details/order-details.component';
 
 
 
@@ -93,7 +94,8 @@ import { AddBrandComponent } from './adminPanel/components/add-brand/add-brand.c
     SignupComponent,
     LoginComponent,
     AddSubcategoryComponent,
-    AddBrandComponent
+    AddBrandComponent,
+    OrderDetailsComponent
    
     
 

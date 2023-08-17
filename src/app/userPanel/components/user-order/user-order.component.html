@@ -13,15 +13,17 @@
                     <th>Order Id</th>
                     <th>TotalPrice</th>
                     <th>Status</th>
+                   
                     <th>Cancel Order</th>
                 </tr>
             </thead>
             <tbody class="align-middle">
-                <tr *ngFor="let data of orderData">
+                <tr *ngFor="let data of orderData"    [routerLink]="['/orderdetails/',data.orderId,'view']" >
                     <td class="align-middle"><img src="assets/images/orderPic.png" alt="" style=" height: 100px;"> </td>
                     <td class="align-middle"># {{data.orderId}} </td>
                     <td class="align-middle">৳ {{data.totalPrice}}</td>
                     <td class="align-middle">{{data.status}}</td>
+                  
                     <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
                     </td>
                 </tr>

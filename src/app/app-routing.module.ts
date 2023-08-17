@@ -17,12 +17,14 @@ import { ForbiddenComponent } from './Security/components/forbidden/forbidden.co
 import { AuthGuard } from './Security/_auth/auth.guard';
 import { AddSubcategoryComponent } from './adminPanel/components/add-subcategory/add-subcategory.component';
 import { AddBrandComponent } from './adminPanel/components/add-brand/add-brand.component';
+import { OrderDetailsComponent } from './userPanel/components/order-details/order-details.component';
 
 const routes: Routes = [
 {path:'' ,pathMatch:'full', redirectTo:'/userHome' },
 {path:'userHome', component: UserHomeComponent},
 {path:'cart' , component:CartComponent},
 {path:'checkout' , component :CheckOutComponent},
+{path:'orderdetails/:orderid/view', component:OrderDetailsComponent},
 {path:'product/:proid/view' ,component: SingleProductViewComponent },
 {path:'userOrder', component : UserOrderComponent , canActivate:[AuthGuard], data:{role:'User'}},
 {path:'contact' , component: ContactComponent},

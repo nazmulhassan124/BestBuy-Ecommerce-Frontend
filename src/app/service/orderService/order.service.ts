@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Order } from 'src/app/Model/Order.model';
+import { OrderDetails } from 'src/app/Model/OrderDetails.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,20 @@ export class OrderService {
     let userStore = localStorage.getItem('user');
     let userData = userStore && JSON.parse(userStore);
     return this.http.get<Order[]>(this.dataUrl+'/getOrderList?userId=' + userData.userId )
+ 
+  }
+
+  orderDetails(orderId : number ) {
+    let userStore = localStorage.getItem('user');
+    let userData = userStore && JSON.parse(userStore);
+    return this.http.get<Order>(this.dataUrl+'/getOrderDetails?userId=' + userData.userId +'&orderId='+ orderId)
+ 
+  }
+
+  orderDetailsList(orderId : number ) {
+    let userStore = localStorage.getItem('user');
+    let userData = userStore && JSON.parse(userStore);
+    return this.http.get<OrderDetails[]>(this.dataUrl+'/getOrderDetailsList?userId=' + userData.userId +'&order_id_fk='+ orderId)
  
   }
 

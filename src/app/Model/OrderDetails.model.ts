@@ -14,5 +14,6 @@ export class OrderDetails{
     offerPrice!:any;
     description!:string;  // product description
     quantity: any;
+    total: any;
 
 }

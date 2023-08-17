@@ -59,7 +59,8 @@ export class CheckOutComponent implements OnInit {
         regularPrice: item.regularPrice,
         offerPrice: item.offerPrice,
         description: item.description,
-        quantity: item.quantity
+        quantity: item.quantity,
+        total: item.quantity* item.regularPrice
       };
       this.orderDetailsData.push(this.orderdetail);
 
